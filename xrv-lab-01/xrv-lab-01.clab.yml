@@ -1,0 +1,13 @@
+name: xrv-lab-01
+
+topology:
+  nodes:
+    xrv9k-01:
+      kind: cisco_xrv9k
+      image: vr-xrv9k:7.6.1 # do not forget to re-tag the image if needed
+    xrv9k-02:
+      kind: cisco_xrv9k
+      image: vr-xrv9k:7.6.1 # do not forget to re-tag the image if needed
+
+  links:
+    - endpoints: ["xrv9k-02:eth1", "xrv9k-01:eth1"]
