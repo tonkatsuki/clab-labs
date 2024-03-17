@@ -7,7 +7,7 @@ topology:
       image: vrnetlab/vr-xrv9k:7.6.1 # do not forget to re-tag the image if needed
     xrv9k-02:
       kind: cisco_xrv9k
-      image: vrnetlabn/vr-xrv9k:7.6.1 # do not forget to re-tag the image if needed
+      image: vrnetlab/vr-xrv9k:7.6.1 # do not forget to re-tag the image if needed
 
   links:
     - endpoints: ["xrv9k-02:eth1", "xrv9k-01:eth1"]
