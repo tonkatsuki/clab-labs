@@ -4,11 +4,11 @@ topology:
   nodes:
     vjunos-01:
       kind: juniper_vjunosswitch
-      images: vrnetlab/vr-vjunosswitch:23.2R1
+      image: vrnetlab/vr-vjunosswitch:23.2R1
       startup-config: vjunos-01.cfg
     vjunos-02:
       kind: juniper_vjunosswitch
-      images: vrnetlab/vr-vjunosswitch:23.2R1
+      image: vrnetlab/vr-vjunosswitch:23.2R1
       startup-config: vjunos-02.cfg
 
   links:
