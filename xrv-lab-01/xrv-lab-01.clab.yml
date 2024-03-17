@@ -5,9 +5,11 @@ topology:
     xrv9k-01:
       kind: cisco_xrv9k
       image: vrnetlab/vr-xrv9k:7.6.1 # do not forget to re-tag the image if needed
+      startup-config: xrv9k-01.cfg
     xrv9k-02:
       kind: cisco_xrv9k
       image: vrnetlab/vr-xrv9k:7.6.1 # do not forget to re-tag the image if needed
+      startup-config: xrv9k-02.cfg
 
   links:
     - endpoints: ["xrv9k-02:eth1", "xrv9k-01:eth1"]
