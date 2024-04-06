@@ -1,0 +1,17 @@
+name: nxos-lab-01
+
+topology:
+  nodes:
+    nxos-01:
+      kind: cisco_n9kv
+      image: vrnetlab/vr-n9kv:10.2.3 # do not forget to re-tag the image if needed
+      startup-config: nxos-01.cfg
+    nxos-02:
+      kind: cisco_n9kv
+      image: vrnetlab/vr-n9kv:10.2.3 # do not forget to re-tag the image if needed
+      startup-config: nxos-02.cfg
+
+  links:
+    - endpoints: ["nxos-01:eth1", "nxos-02:eth1"]
+    - endpoints: ["nxos-01:eth2", "nxos-02:eth2"]
+    - endpoints: ["nxos-01:eth3", "nxos-02:eth3"]
