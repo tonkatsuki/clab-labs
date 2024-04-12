@@ -1,0 +1,14 @@
+name: c8000v
+topology:
+  nodes:
+    node1:
+      kind: cisco_c8000v
+      image: vrnetlab/vr-c8000v:17.11.01a
+      startup-config: r1.cfg
+    node2:
+      kind: cisco_c8000v
+      image: vrnetlab/vr-c8000v:17.11.01a
+      startup-config: r2.cfg
+
+  links:
+    - endpoints: ["node1:eth1", "node2:eth1"]
