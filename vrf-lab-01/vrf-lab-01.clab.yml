@@ -4,11 +4,11 @@ topology:
     c8000-1:
       kind: cisco_c8000v
       image: vrnetlab/vr-c8000v:17.11.01a
-      startup-config: r1.cfg
+      startup-config: c8000-1.cfg
     c8000-2:
       kind: cisco_c8000v
       image: vrnetlab/vr-c8000v:17.11.01a
-      startup-config: r2.cfg
+      startup-config: c8000-2.cfg
     ftd-1:
       kind: cisco_ftdv
       image: vrnetlab/vr-ftdv:7.3.1
