@@ -1,0 +1,25 @@
+name: vrf-lab-01
+topology:
+  nodes:
+    c8000-1:
+      kind: cisco_c8000v
+      image: vrnetlab/vr-c8000v:17.11.01a
+      startup-config: r1.cfg
+    c8000-2:
+      kind: cisco_c8000v
+      image: vrnetlab/vr-c8000v:17.11.01a
+      startup-config: r2.cfg
+    ftd-1:
+      kind: cisco_ftdv
+      image: vrnetlab/vr-ftdv:7.3.1
+    client1:
+      kind: "linux"
+      image: wbitt/network-multitool:alpine-extra
+      exec:
+        - ip addr add 192.168.2.2/30 dev eth1
+        - ip route add 0.0.0.0/0 via 192.168.2.1
+
+  links:
+    - endpoints: ["c8000-1:eth1", "ftd-1:eth1"]
+    - endpoints: ["c8000-2:eth1", "ftd-1:eth2"]
+    - endpoints: ["c8000-1:eth2", "client1:eth1"]
