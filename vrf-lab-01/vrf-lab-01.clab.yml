@@ -9,10 +9,10 @@ topology:
       kind: cisco_c8000v
       image: vrnetlab/vr-c8000v:17.11.01a
       startup-config: c8000-2.cfg
-    c8000-3:
-      kind: cisco_c8000v
-      image: vrnetlab/vr-c8000v:17.11.01a
-      startup-config: c8000-3.cfg
+    nxos-01:
+      kind: cisco_n9kv
+      image: vrnetlab/vr-n9kv:10.2.3
+      startup-config: nxos-01.cfg
     srx-1:
       kind: juniper_vsrx
       image: vrnetlab/vr-vsrx:vsrx30-23.2R1.13
@@ -27,7 +27,7 @@ topology:
 
   links:
     - endpoints: ["c8000-1:eth1", "srx-1:eth1"]
-    - endpoints: ["c8000-1:eth2", "c8000-3:eth1"]
+    - endpoints: ["c8000-1:eth2", "nxos-01:eth1"]
     - endpoints: ["c8000-1:eth3", "c8000-2:eth2"]
     - endpoints: ["c8000-2:eth1", "srx-1:eth2"]
-    - endpoints: ["c8000-3:eth2", "client1:eth1"]
+    - endpoints: ["nxos-01:eth2", "client1:eth1"]
