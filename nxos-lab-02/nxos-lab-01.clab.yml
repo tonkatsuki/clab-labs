@@ -4,11 +4,11 @@ topology:
   nodes:
     nxos-01:
       kind: cisco_n9kv
-      image: vrnetlab/vr-n9kv:10.2.3 # do not forget to re-tag the image if needed
+      image: vrnetlab/vr-n9kv:10.4.2 # do not forget to re-tag the image if needed
       startup-config: nxos-01.cfg
     nxos-02:
       kind: cisco_n9kv
-      image: vrnetlab/vr-n9kv:10.2.3 # do not forget to re-tag the image if needed
+      image: vrnetlab/vr-n9kv:10.4.2 # do not forget to re-tag the image if needed
       startup-config: nxos-02.cfg
 
   links:

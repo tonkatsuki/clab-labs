@@ -1,0 +1,25 @@
+name: nxos-lab-vxlan-01
+
+topology:
+  nodes:
+    spine-01:
+      kind: cisco_n9kv
+      image: vrnetlab/vr-n9kv:10.4.2 # do not forget to re-tag the image if needed
+      startup-config: spine-01.cfg
+    spine-02:
+      kind: cisco_n9kv
+      image: vrnetlab/vr-n9kv:10.4.2 # do not forget to re-tag the image if needed
+      startup-config: spine-02.cfg
+    leaf-01:
+      kind: cisco_n9kv
+      image: vrnetlab/vr-n9kv:10.4.2 # do not forget to re-tag the image if needed
+      startup-config: leaf-01.cfg
+    leaf-02:
+      kind: cisco_n9kv
+      image: vrnetlab/vr-n9kv:10.4.2 # do not forget to re-tag the image if needed
+      startup-config: leaf-02.cfg
+  links:
+    - endpoints: ["spine-01:eth1", "leaf-01:eth1"]
+    - endpoints: ["spine-01:eth2", "leaf-02:eth1"]
+    - endpoints: ["spine-02:eth1", "leaf-01:eth2"]
+    - endpoints: ["spine-02:eth2", "leaf-02:eth2"]
