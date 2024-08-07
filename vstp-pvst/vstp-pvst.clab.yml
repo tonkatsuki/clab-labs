@@ -1,0 +1,39 @@
+name: vstp-pvst
+topology:
+  nodes:
+    vjunos-01:
+      kind: juniper_vjunosswitch
+      image: vrnetlab/vr-vjunosswitch:vjunosswitch-23.2R1
+      startup-config: vjunos-01.cfg
+    vjunos-02:
+      kind: juniper_vjunosswitch
+      image: vrnetlab/vr-vjunosswitch:vjunosswitch-23.2R1
+      startup-config: vjunos-02.cfg
+    vjunos-03:
+      kind: juniper_vjunosswitch
+      image: vrnetlab/vr-vjunosswitch:vjunosswitch-23.2R1
+      startup-config: vjunos-03.cfg
+    nxos-01:
+      kind: cisco_n9kv
+      image: vrnetlab/vr-n9kv:10.4.2 # do not forget to re-tag the image if needed
+      startup-config: nxos-01.cfg
+    nxos-02:
+      kind: cisco_n9kv
+      image: vrnetlab/vr-n9kv:10.4.2 # do not forget to re-tag the image if needed
+      startup-config: nxos-02.cfg
+    client1:
+      kind: "linux"
+      image: wbitt/network-multitool:alpine-extra
+      exec:
+        - ip addr add 10.50.50.2/30 dev eth1
+        - ip route del default via 172.20.20.1
+        - ip route add default via 10.50.50.1
+
+  links:
+    - endpoints: ["nxos-01:eth1", "nxos-02:eth1"]
+    - endpoints: ["nxos-01:eth2", "nxos-02:eth2"]
+    - endpoints: ["nxos-01:eth3", "client1:eth1"]
+    - endpoints: ["vjunos-01:eth1", "vjunos-02:eth1"]
+    - endpoints: ["vjunos-01:eth2", "vjunos-03:eth1"]
+    - endpoints: ["vjunos-02:eth5", "nxos-01:eth5"]
+    - endpoints: ["vjunos-03:eth5", "nxos-02:eth5"]
