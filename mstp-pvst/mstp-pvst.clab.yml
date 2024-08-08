@@ -1,0 +1,14 @@
+name: mstp-pvst
+topology:
+  nodes:
+    vjunos-03:
+      kind: juniper_vjunosswitch
+      image: vrnetlab/vr-vjunosswitch:vjunosswitch-23.2R1
+      startup-config: vjunos-03.cfg
+    nxos-02:
+      kind: cisco_n9kv
+      image: vrnetlab/vr-n9kv:10.4.2 # do not forget to re-tag the image if needed
+      startup-config: nxos-02.cfg
+
+  links:
+    - endpoints: ["vjunos-03:eth5", "nxos-02:eth5"]
