@@ -25,7 +25,7 @@ topology:
       kind: "linux"
       image: wbitt/network-multitool:alpine-extra
       exec:
-        - ip addr add 10.50.50.2/30 dev eth1
+        - ip addr add 10.50.50.2/24 dev eth1
         - ip route del default via 172.20.20.1
         - ip route add default via 10.50.50.1
 
