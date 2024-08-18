@@ -9,8 +9,11 @@ topology:
       kind: cisco_cat9kv
       image: vrnetlab/vr-cat9kv:17.12.01p
       startup-config: 9k-2.cfg
-    flow-collector:
-      kind: ext-container
+    9k-3:
+      kind: cisco_cat9kv
+      image: vrnetlab/vr-cat9kv:17.12.01p
+      startup-config: 9k-3.cfg
   links:
     - endpoints: ["9k-1:Gi1/0/1", "9k-2:Gi1/0/1"]
-    - endpoints: ["9k-1:Gi1/0/2", "flow-collector:eth1"]
+    - endpoints: ["9k-1:Gi1/0/2", "9k-3:Gi1/0/1"]
+    - endpoints: ["9k-2:Gi1/0/2", "9k-3:Gi1/0/2"]
