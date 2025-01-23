@@ -1,0 +1,35 @@
+name: dual-site
+topology:
+  nodes:
+    vjunos-01:
+      kind: juniper_vjunosrouter
+      image: vrnetlab/juniper_vjunos-router:23.4R2-S2.1
+      startup-config: vjunos-01.cfg
+    vjunos-02:
+      kind: juniper_vjunosrouter
+      image: vrnetlab/juniper_vjunos-router:23.4R2-S2.1
+      startup-config: vjunos-02.cfg
+    vjunos-03:
+      kind: juniper_vjunosrouter
+      image: vrnetlab/juniper_vjunos-router:23.4R2-S2.1
+      startup-config: vjunos-03.cfg
+    vjunos-04:
+      kind: juniper_vjunosrouter
+      image: vrnetlab/juniper_vjunos-router:23.4R2-S2.1
+      startup-config: vjunos-04.cfg
+    iosxr-01:
+      kind: cisco_xrv9k
+      image: vrnetlab/cisco_xrv9k:7.11.1 # do not forget to re-tag the image if needed
+      startup-config: iosxr-01.cfg
+    iosxr-02:
+      kind: cisco_xrv9k
+      image: vrnetlab/cisco_xrv9k:7.11.1 # do not forget to re-tag the image if needed
+      startup-config: iosxr-02.cfg
+  links:
+    - endpoints: ["vjunos-01:eth1", "vjunos-02:eth1"]
+    - endpoints: ["vjunos-01:eth2", "vjunos-03:eth1"]
+    - endpoints: ["vjunos-02:eth2", "vjunos-03:eth2"]
+    - endpoints: ["iosxr-01:eth1", "iosxr-02:eth1"]
+    - endpoints: ["iosxr-01:eth2", "vjunos-04:eth1"]
+    - endpoints: ["iosxr-02:eth2", "vjunos-04:eth2"]
+    - endpoints: ["vjunos-03:eth3", "vjunos-04:eth3"]
