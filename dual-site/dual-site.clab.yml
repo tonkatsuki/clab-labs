@@ -1,6 +1,14 @@
 name: dual-site
 topology:
   nodes:
+    alpine-01:
+      kind: "linux"
+      image: wbitt/network-multitool:alpine-extra
+      exec:
+        - ip addr add 1.1.1.2/24 dev eth1
+        - ip route delete default via 172.20.20.1 dev eth0
+        - ip route add default via 1.1.1.1 dev eth1
+
     vjunos-01:
       kind: juniper_vjunosrouter
       image: vrnetlab/juniper_vjunos-router:23.4R2-S2.1
@@ -33,3 +41,4 @@ topology:
     - endpoints: ["iosxr-01:eth2", "vjunos-04:eth1"]
     - endpoints: ["iosxr-02:eth2", "vjunos-04:eth2"]
     - endpoints: ["vjunos-03:eth3", "vjunos-04:eth3"]
+    - endpoints: ["vjunos-03:eth4", "alpine-01:eth1"]
